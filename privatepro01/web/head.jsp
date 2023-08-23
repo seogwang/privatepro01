@@ -10,22 +10,22 @@
 <title>A&A 생명영성연구원</title>
 
 <!-- 검색엔진 최적화(SEO) -->
-<meta name="Subject" content="나다공동체, A&A 생명영성연구원">
-<meta name="Keywords" content="A&A, 생명영성연구원, Awaykening And Alivening, 나다공동체, 폰티스, 영성대학원">
-<meta name="Description" content="A&A 생명영성연구원은 이러한 시대적 요청에 따라 영성적 공통 기반 위에서 예리한 지성과 실천력을 갖춘 지도자들을 양성하고자 합니다.">
+<meta name="Subject" content="나다공동체, A&amp;A 생명영성연구원">
+<meta name="Keywords" content="A&amp;A, 생명영성연구원, Awakening And Alivening, 나다공동체, 폰티스, 영성대학원">
+<meta name="Description" content="A&amp;A 생명영성연구원은 이러한 시대적 요청에 따라 영성적 공통 기반 위에서 예리한 지성과 실천력을 갖춘 지도자들을 양성하고자 합니다.">
 <!-- <meta name="Robots" content="noindex, nofllow"> -->
 <meta name="robots" content="index,follow">
 
 <!-- 오픈 그래프(Open graph)-->
 <meta property="og:type" content="website">
-<meta property="og:title" content="A&A 생명영성연구원">
+<meta property="og:title" content="A&amp;A 생명영성연구원">
 <meta property="og:description" content="Embracing the Fontis, Into the World - 근원을 품고 세상 속으로">
 <meta property="og:image" content="<%=path %>/images/logo.png">
 <meta property="og:url" content="<%=path %>">
 
 <!-- 트위터 -->
 <meta name="twitter:card" content="picture">
-<meta name="twitter:title" content="A&A 생명영성연구원">
+<meta name="twitter:title" content="A&amp;A 생명영성연구원">
 <meta name="twitter:description" content="Embracing the Fontis, Into the World - 근원을 품고 세상 속으로">
 <meta name="twitter:image" content="<%=path %>/images/logo.png">
 
