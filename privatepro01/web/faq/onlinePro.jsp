@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%-- 1. 필요한 라이브러리 가져오기 --%>
-<%@ page import="com.chunjae.util.*" %>
+<%@ page import="kr.or.fontis.util.*" %>
 <%@ page import="java.util.*, javax.mail.*, javax.mail.internet.*" %>
 <%-- 2. 인코딩 설정 --%>
 <%@ include file="../encoding.jsp" %>

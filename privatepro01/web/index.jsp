@@ -1,10 +1,45 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.text.*" %>
+<%@ page import="kr.or.fontis.dto.Board" %>
+<%@ page import="kr.or.fontis.db.*" %>
+<%@ page import="java.util.Date" %>
+
+<%
+    Connection con = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    //2. DB 연결하기
+    DBC conn = new MariaDBCon();
+    con = conn.connect();
+
+    //3. SQL을 실행하여 Result(공지사항목록)을 가져오기
+    String sql = "SELECT * FROM board ORDER BY bno desc LIMIT 5";
+    pstmt = con.prepareStatement(sql);
+    rs = pstmt.executeQuery();
+
+    //4.가져온 목록을 boardList(공지사항목록)에 하나 씩 담기
+    List<Board> boardList = new ArrayList<>();
+    while(rs.next()){
+        Board bd = new Board();
+        bd.setBno(rs.getInt("bno"));
+        bd.setTitle(rs.getString("title"));
+        bd.setContent(rs.getString("content"));
+        bd.setAuthor(rs.getString("author"));
+        bd.setResdate(rs.getString("resdate"));
+        bd.setCnt(rs.getInt("cnt"));
+        boardList.add(bd);
+    }
+    conn.close(rs, pstmt, con);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>A&amp;A 생명영성연구원</title>
     <%@ include file="head.jsp" %>
 
     <!-- 스타일 초기화 : reset.css 또는 normalize.css -->
@@ -20,6 +55,7 @@
     <link rel="stylesheet" href="hd.css">
     <style>
         /* 본문 영역 스타일 */
+        hr { border: none; border-top: 2px solid black; margin-bottom: 50px; }
         .contents { clear:both; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
         .vs { clear:both; width:100%; min-height:600px; position:relative; overflow:hidden; }
@@ -30,14 +66,16 @@
             background-position:center center; background-size:cover; position:absolute;
             left: 0; top: 0; z-index:5; }
         .img_box li.active .bg_box { z-index:6; }
-        .img_box li.item1 .bg_box { background-image: url("./images/img_main_keyVisual01_summer.jpg"); }
-        .img_box li.item2 .bg_box { background-image: url("./images/img_main_keyVisual03.jpg"); }
+        .img_box li.item1 .bg_box { background-image: url("./images/index_bg1.jpg"); }
+        .img_box li.item2 .bg_box { background-image: url("./images/index_bg2.jpg"); }
+        .img_box li.item3 .bg_box { background-image: url("./images/index_bg3.jpg"); }
+        .img_box li.item4 .bg_box { background-image: url("./images/index_bg4.jpg"); }
         .img_box li .vs_tit { position:absolute; top:180px; left:100px; z-index:10;
-            font-weight: 300; font-size: 60px; line-height: 1.3; }
+            font-weight: 300; font-size: 50px; line-height: 1.3; }
         .img_box li .vs_tit strong { font-weight: 500; }
 
         .img_box li.active { visibility: visible; opacity: 1; }
-        .vs_tit { font-size:60px; color:#fff; }
+        .vs_tit { font-size: 50px; color:#fff; }
         .btn_box li .vs_btn { display:block; width: 12px; height: 12px;
             background-color:rgba(255,255,255,0.8); border:2px solid #fff;
             position:absolute; top:100px; left: 100px; z-index:14; cursor:pointer;
@@ -52,16 +90,17 @@
         .play_btn:after { content:"| |"; }
         .play_btn.active:after { content:"▶"; }
 
-        .page { clear:both; width: 100vw; height: 100vh; position:relative; }
+        .page { clear:both; width: 100vw; height: auto; position:relative; }
         .page::after { content:""; display:block; width: 100%; clear:both; }
 
-        .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }
-        .page_tit { font-size:48px; text-align: center; padding-top:1.75em; }
+        .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; padding-bottom: 100px }
+        .page_tit { font-size:48px; text-align: center; padding-top:1.75em; padding-bottom: 1.25em; }
 
         #page1 { background-color: #f1f2f1;
-            background-image:url("./images/bg_social_ptn01.png");
+            background-image:url("");
             background-position:15vw 63vh; background-repeat: no-repeat; }
 
+        .tb1 tr td { font-size: 24px; height: 50px; padding-left: 150px; }
         .pic_lst { clear:both; width: 1200px; margin: 60px auto; }
         .pic_lst li { width: 280px; margin-right:26px; height: 400px; float:left;
             background-repeat: no-repeat; background-position:center center;
@@ -150,14 +189,15 @@
                 <li class="item1 active">
                     <input type="radio" name="vs_ra" id="vs_ra1" class="vs_ra" checked>
                     <div class="bg_box"></div>
-                    <h2 class="vs_tit">교육에 대한 끊임없는 도전<br>
-                        <strong>행복한 내일을 함께 합니다</strong></h2>
+                    <h2 class="vs_tit">EMBRACING THE FONTIS,<br>
+                        IN TO THE WORLD<br>
+                        <strong>근원을 품고 세상속으로</strong></h2>
                 </li>
                 <li class="item2">
                     <input type="radio" name="vs_ra" id="vs_ra2" class="vs_ra">
                     <div class="bg_box"></div>
-                    <h2 class="vs_tit">“나눔의 힘! 실천의 힘!”<br>
-                        <strong>작은 따뜻함으로 세상을 <br>바꿉니다</strong>
+                    <h2 class="vs_tit">POST-DEGREE<br>
+                        <strong>영적해석기반 학문적 재구성<br>내면적 영성과<br>사회적 영성의 일치</strong>
                     </h2>
                 </li>
             </ul>
@@ -217,131 +257,31 @@
         </script>
         <section class="page" id="page1">
             <div class="page_wrap">
-                <h2 class="page_tit">페이지 제목1</h2>
-                <ul class="pic_lst">
-                    <li class="item1">
-                        <a href="">
-                            <p class="pic_com">설명</p>
-                            <h3 class="pic_tit">제목</h3>
-                            <span class="pic_arrow"></span>
-                        </a>
-                    </li>
-                    <li class="item2">
-                        <a href="">
-                            <p class="pic_com">설명</p>
-                            <h3 class="pic_tit">제목</h3>
-                            <span class="pic_arrow"></span>
-                        </a>
-                    </li>
-                    <li class="item3">
-                        <a href="">
-                            <p class="pic_com">설명</p>
-                            <h3 class="pic_tit">제목</h3>
-                            <span class="pic_arrow"></span>
-                        </a>
-                    </li>
-                    <li class="item4">
-                        <a href="">
-                            <p class="pic_com">설명</p>
-                            <h3 class="pic_tit">제목</h3>
-                            <span class="pic_arrow"></span>
-                        </a>
-                    </li>
-                </ul>
+                <h2 class="page_tit">NOTICE</h2>
+                <hr>
+                <table class="tb1">
+                    <tbody>
+                    <%-- 5. boardList(공지사항목록)을 테이블 태그의 tr 요소를 반복하여 출력 --%>
+                    <%
+                        for(Board bd:boardList) {
+                    %>
+                    <tr>
+                        <td class="item1">
+                            <%-- 6. 로그인한 사용자만 제목 부분의 a요소에 링크 중 bno 파라미터(쿼리스트링)으로 상세보기를 요청 가능--%>
+                            <% if(sid!=null) { %>
+                            <a href="/board/getBoard.jsp?bno=<%=bd.getBno() %>"><%=bd.getTitle() %></a>
+                            <% } else { %>
+                            <span><%=bd.getTitle() %></span>
+                            <% } %>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>
+                    </tbody>
+                </table>
             </div>
         </section>
-        <section class="page" id="page2">
-            <div class="page_wrap">
-                <h2 class="page_tit">미디어</h2>
-                <p class="page_com">천재교육의 보도자료와 SNS 콘텐츠를 소개합니다.</p>
-                <div class="sl-btn-box">
-                    <button type="button" class="btn next">&gt;</button>
-                    <button type="button" class="btn prev">&lt;</button>
-                </div>
-                <!-- div.slide_box>ul.card_lst>li.item$*7>a>div.thumb_box+p.thumb_tit{썸네일제목$}+(div.ico_box>span.ico_item+span{아이콘$}.thumb_date{2023-07-18}) -->
-                <div class="slide_box">
-                    <ul class="card_lst">
-                        <li class="item1">
-                            <h3 class="cate_tit">언론보도</h3>
-                            <ul class="cate_lst">
-                                <li>
-                                    <a href="">
-                                        <p class="bd_content">운필력 키우는 한글 글쓰기, 유아학습지로 창의력과 표현력을 기른다.</p>
-                                        <p class="bd_date">2023-07-17</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <p class="bd_content">천재교과서, 스마트해법-밀크T 온·오프라인 결합 상품 더블케어 천재패스 출시</p>
-                                        <p class="bd_date">2023-07-17</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="item2">
-                            <a href="">
-                                <div class="thumb_box"></div>
-                                <p class="thumb_tit">썸네일제목2 썸네일제목2 썸네일제목2 썸네일제목2 썸네일제목2 썸네일제목2 썸네일제목2썸네일제목2 썸네일제목2 썸네일제목2 썸네일제목2썸네일제목2썸네일제목2 썸네일제목2 </p>
-                                <div class="ico_box"><span class="ico item1"></span><span class="thumb_date">2023-07-18</span></div>
-                            </a>
-                        </li>
-                        <li class="item3">
-                            <a href="">
-                                <div class="thumb_box"></div>
-                                <p class="thumb_tit">썸네일제목3</p>
-                                <div class="ico_box"><span class="ico item1"></span><span class="thumb_date">2023-07-18</span></div>
-                            </a>
-                        </li>
-                        <li class="item4">
-                            <a href="">
-                                <div class="thumb_box"></div>
-                                <p class="thumb_tit">썸네일제목4</p>
-                                <div class="ico_box"><span class="ico item2"></span><span class="thumb_date">2023-07-18</span></div>
-                            </a>
-                        </li>
-                        <li class="item5">
-                            <a href="">
-                                <div class="thumb_box"></div>
-                                <p class="thumb_tit">썸네일제목5</p>
-                                <div class="ico_box"><span class="ico item1"></span><span class="thumb_date">2023-07-18</span></div>
-                            </a>
-                        </li>
-                        <li class="item6">
-                            <a href="">
-                                <div class="thumb_box"></div>
-                                <p class="thumb_tit">썸네일제목6</p>
-                                <div class="ico_box"><span class="ico item2"></span><span class="thumb_date">2023-07-18</span></div>
-                            </a>
-                        </li>
-                        <li class="item7">
-                            <a href="">
-                                <div class="thumb_box"></div>
-                                <p class="thumb_tit">썸네일제목7</p>
-                                <div class="ico_box"><span class="ico item1"></span><span class="thumb_date">2023-07-18</span></div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <script>
-            $(function(){
-                $(".sl-btn-box .btn.next").click(function(){
-                    var ln = parseInt($(".card_lst").css("margin-left"));
-                    if(ln>-1110) {
-                        var mv = ln - 370;
-                        $(".card_lst").not(":animated").animate({"margin-left":mv+"px"});
-                    }
-                });
-                $(".sl-btn-box .btn.prev").click(function(){
-                    var ln = parseInt($(".card_lst").css("margin-left"));
-                    if(ln<0){
-                        var mv = ln + 370;
-                        $(".card_lst").not(":animated").animate({"margin-left":mv+"px"});
-                    }
-                });
-            });
-        </script>
     </div>
     <footer class="ft" id="ft">
         <%@ include file="footer.jsp" %>

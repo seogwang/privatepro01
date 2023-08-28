@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%-- 1. 필요한 라이브러리 로딩 --%>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.chunjae.db.*" %>
+<%@ page import="kr.or.fontis.db.*" %>
 <%@ include file="../encoding.jsp" %>
 <%
     //2. 보내온 데이터 받기

@@ -3,8 +3,8 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.text.*" %>
-<%@ page import="com.chunjae.dto.Board" %>
-<%@ page import="com.chunjae.db.*" %>
+<%@ page import="kr.or.fontis.dto.Board" %>
+<%@ page import="kr.or.fontis.db.*" %>
 <%@ page import="java.util.Date" %>
 <%
     Connection con = null;
@@ -59,7 +59,7 @@
             background-repeat: no-repeat; background-position:center -250px; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
 
-        .page { clear:both; width: 100vw; height: 100vh; position:relative; }
+        .page { clear:both; width: 100vw; height: auto; position:relative; }
         .page::after { content:""; display:block; width: 100%; clear:both; }
 
         .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }

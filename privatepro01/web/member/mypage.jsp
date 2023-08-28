@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.chunjae.db.*" %>
-<%@ page import="com.chunjae.dto.*" %>
+<%@ page import="kr.or.fontis.dto.*" %>
+<%@ page import="kr.or.fontis.db.*" %>
 <%
     String id = (String) session.getAttribute("id");    //세션의 id 불러오기
     Connection conn = null;
@@ -60,12 +60,13 @@
     <link rel="stylesheet" href="../hd.css">
     <style>
         /* 본문 영역 스타일 */
+        p { text-align: center; }
         .contents { clear:both; min-height:100vh;
             background-image: url("../images/bg_visual_overview.jpg");
             background-repeat: no-repeat; background-position:center -250px; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
 
-        .page { clear:both; width: 100vw; height: 100vh; position:relative; }
+        .page { clear:both; width: 100vw; height: auto; position:relative; }
         .page::after { content:""; display:block; width: 100%; clear:both; }
 
         .page_wrap { clear:both; width: 1200px; height: auto; margin:0 auto; }
@@ -78,7 +79,7 @@
         .breadcrumb a { color:#fff; }
         .frm { clear:both; width:1200px; margin:0 auto; padding-top: 80px; }
 
-        .tb1 { width:500px; margin:50px auto; }
+        .tb1 { width:600px; margin:50px auto; }
         .tb1 th { width:180px; line-height:32px; padding-top:8px; padding-bottom:8px;
         border-top:1px solid #333; border-bottom:1px solid #333;
             background-color:deepskyblue; color:#fff; }
