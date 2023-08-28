@@ -22,8 +22,7 @@
         /* 본문 영역 스타일 */
         .contents { clear:both; }
         .contents::after { content:""; clear:both; display:block; width:100%; }
-        .vs { clear:both; width:100%; min-height:600px; background-color: deeppink;
-            position:relative; overflow:hidden; }
+        .vs { clear:both; width:100%; min-height:600px; position:relative; overflow:hidden; }
         .img_box { position:relative; width: 100%; height:600px; overflow:hidden; }
         .img_box li { visibility:hidden; opacity:0;  transition-duration:0.7s;
             transition-delay:0.1s;    width:100%; height:600px;  }
