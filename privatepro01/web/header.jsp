@@ -24,9 +24,7 @@
     </nav>
 </div>
 <div class="hd_wrap">
-    <a href="/" class="logo">
-        <img src="" alt="A&amp;A 생명영성연구원">
-    </a>
+    <a href="/" class="logo">A&amp;A 생명영성연구원</a>
     <nav class="gnb">
         <ul class="menu">
             <li class="item1">
