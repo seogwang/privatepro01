@@ -67,3 +67,7 @@ document.onselectstart = function() { return false; }
     response.setContentType("text/html; charset=UTF-8");
     response.setCharacterEncoding("UTF-8");
 %>
+
+<style>
+    .gnb .menu li .sub li a { color : #aaaaaa; }
+</style>

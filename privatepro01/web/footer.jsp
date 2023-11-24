@@ -7,8 +7,8 @@
             <li><a href="">이메일 무단 수집 거부</a></li>
         </ul>
         <ul class="snb">
-            <li class="item1"><a href="/">소셜1</a></li>
-            <li class="item2"><a href="/">소셜2</a></li>
+            <li class="item1"><a href="<%=path8 %>">소셜1</a></li>
+            <li class="item2"><a href="<%=path8 %>">소셜2</a></li>
             <li class="item3"><a href="https://blog.naver.com/sacredgarden">소셜3</a></li>
             <li class="item4"><a href="https://www.youtube.com/@user-ci7uf9fb5m">소셜4</a></li>
             <li class="item5"><a href="https://www.instagram.com/_sacred_garden/">소셜5</a></li>

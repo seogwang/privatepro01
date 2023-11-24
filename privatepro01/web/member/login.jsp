@@ -65,7 +65,7 @@
         <section class="page" id="page1">
             <div class="page_wrap">
                 <h2 class="page_tit">로그인</h2>
-                <form action="loginpro.jsp" id="login_frm" class="frm">
+                <form action="./loginpro.jsp" id="login_frm" class="frm">
                     <table class="tb1">
                         <tbody>
                         <tr>

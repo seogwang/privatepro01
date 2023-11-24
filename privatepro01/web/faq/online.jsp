@@ -73,7 +73,7 @@
     </header>
     <div class="contents" id="contents">
         <div class="breadcrumb">
-            <p><a href="/">HOME</a> &gt; <a href="/faq/online.jsp">온라인 상담</a></p>
+            <p><a href="<%=path8 %>">HOME</a> &gt; <a href="/faq/online.jsp">온라인 상담</a></p>
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">

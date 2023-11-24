@@ -4,6 +4,8 @@
 <%@ page import="kr.or.fontis.db.*" %>
 <%@ page import="java.security.*" %>
 <%
+    String path999 = request.getContextPath();
+
     String id = request.getParameter("id");
     String pw = request.getParameter("pw");
     pw = AES256.sha256(pw);
@@ -26,9 +28,9 @@
         if(rs.next()){
             session.setAttribute("id", id);
             session.setAttribute("name", rs.getString("name"));
-            response.sendRedirect("/");
+            response.sendRedirect(path999+"/");
         } else {
-            response.sendRedirect("/member/login.jsp");
+            response.sendRedirect(path999+"/member/login.jsp");
         }
     } catch(SQLException e) {
         System.out.println("SQL 구문이 처리되지 못했습니다.");

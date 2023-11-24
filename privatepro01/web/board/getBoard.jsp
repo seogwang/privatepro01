@@ -100,7 +100,7 @@
     </header>
     <div class="contents" id="contents">
         <div class="breadcrumb">
-            <p><a href="/">HOME</a> &gt; <a href="/board/boardList.jsp">공지사항</a> &gt; <span>공지사항 상세보기</span></p>
+            <p><a href="<%=path8 %>">HOME</a> &gt; <a href="/board/boardList.jsp">공지사항</a> &gt; <span>공지사항 상세보기</span></p>
         </div>
         <section class="page" id="page1">
             <div class="page_wrap">

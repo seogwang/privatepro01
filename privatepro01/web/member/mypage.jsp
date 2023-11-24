@@ -145,7 +145,7 @@
                     <tr>
                         <td colspan="2" class="colspan">
                             <a href="/member/modify.jsp" class="inbtn">회원정보수정</a>
-                            <a href="/" class="inbtn">메인으로</a>
+                            <a href="<%=path8 %>" class="inbtn">메인으로</a>
                         </td>
                     </tr>
                     </tbody>

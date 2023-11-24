@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SHA256Test {
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        String pwd = "4321";
+        String pwd = "1234";
         String cryPwd = SHA256.encrypt(pwd);
         System.out.println("입력된 비밀번호 : "+pwd);
         System.out.println("암호화된 비밀번호 : "+cryPwd);
